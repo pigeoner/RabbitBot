@@ -1,0 +1,18 @@
+appid: '' # 填写QQ机器人管理端发放的BotAppID(开发者ID)
+token: '' #填写QQ机器人管理端发放的机器人令牌
+mysql: # 数据库相关配置
+  host: '' # 主机地址
+  user: '' # 用户名
+  password: '' # 密码
+  db: '' # 数据库名
+video_path: '' # 所有视频存放的目录
+video_play: # 播放视频相关配置
+  rtmp: '' # 直播地址
+cookie: '' # B站的cookie，最好填完整，不要只用SESSIONDATA
+channel_id:
+  ybb: ''
+  danmu_test: ''
+  danmu:
+    azi: ''
+    xiaoke: ''
+    qihai: ''
