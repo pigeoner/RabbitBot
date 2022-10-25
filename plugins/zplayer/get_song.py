@@ -5,15 +5,18 @@ import json
 import codecs
 import os
 from plugins.config import _config
+import time
 
 
 def select_song(song_title, auth_id):
     logger.info(song_title)
     srch = Search()
     song_path_lst, song_name_lst = srch.walk_file(
-        _config['my_path'], song_title)  # 找歌
+        _config['video_path'], song_title)  # 找歌
     if len(song_path_lst) == 1:
         movie = Movie_MP4(song_path_lst[0])
+        movie.play()
+        time.sleep(3)
         movie.play()
         logger.info(song_path_lst[0])
         return "来咯来咯"
