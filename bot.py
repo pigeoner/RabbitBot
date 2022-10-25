@@ -2,7 +2,7 @@ import botpy
 from botpy.types.message import Message
 from botpy.ext.cog_yaml import read
 from plugins import *
-from plugins import _config
+from plugins.config import _config
 import re
 import asyncio
 
