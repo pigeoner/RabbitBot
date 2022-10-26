@@ -1,19 +1,16 @@
-import requests  # pip下载的py库文件
-import json  # py内置
-import os
+import requests
 from plugins.config import _config
 
 
 class UpdateBili:
-    def __init__(self):
-        self.video_path = _config['video_path']
-        self.cookie = _config['cookie']
-        self.headers = {
-            'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/106.0.0.0 Safari/537.36',
-            'Cookie': self.cookie
-        }
-        self.video_url = 'https://api.bilibili.com/x/web-interface/view?bvid='
-        self.download_url = 'https://api.bilibili.com/x/player/playurl?cid={}&avid={}&qn={}'
+    video_path = _config['video_path']
+    cookie = _config['cookie']
+    headers = {
+        'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/106.0.0.0 Safari/537.36',
+        'Cookie': cookie
+    }
+    video_url = 'https://api.bilibili.com/x/web-interface/view?bvid='
+    download_url = 'https://api.bilibili.com/x/player/playurl?cid={}&avid={}&qn={}'
 
     def get_video_info(self, bv):
         r = requests.get(url=self.video_url+bv, headers=self.headers)
@@ -76,9 +73,9 @@ class UpdateBili:
         return download_info['data']['durl'][p - 1]['url']
 
     # 主体部分
-
-    def download_video(self, url, bv, filename):
-        _headers = self.headers.copy()
+    @classmethod
+    def download_video(cls, url, bv, filename):
+        _headers = cls.headers.copy()
         _headers['referer'] = 'https://www.bilibili.com/video/' + bv
         try:
             with requests.get(url=url, headers=_headers, stream=True) as r:
@@ -96,29 +93,31 @@ class UpdateBili:
             print(e)
             raise Exception('获取视频下载内容时出错\n', e)
 
-    def download_video_bili(self, bv):
-        cid_list_len = self.get_cid_list(bv)
+    @classmethod
+    def download_video_bili(cls, bv):
+        cid_list_len = cls.get_cid_list(bv)
         if cid_list_len == 0:
             return '戳啦戳啦'
         elif cid_list_len == 1:
-            url = self.get_download_url_one(bv)
-            filename = self.video_path + self.get_title(bv) + '.mp4'
-            self.download_video(url, bv, filename)
+            url = cls.get_download_url_one(bv)
+            filename = cls.video_path + cls.get_title(bv) + '.mp4'
+            cls.download_video(url, bv, filename)
         elif cid_list_len > 1:
-            for p in self.get_cid_more(bv):
-                url = self.get_download_url_more(bv, p)
-                filename = self.video_path + \
-                    self.get_title(bv) + self.get_part(bv, p) + '.mp4'
-                self.download_video(url, bv, filename)
+            for p in cls.get_cid_more(bv):
+                url = cls.get_download_url_more(bv, p)
+                filename = cls.video_path + \
+                    cls.get_title(bv) + cls.get_part(bv, p) + '.mp4'
+                cls.download_video(url, bv, filename)
         return '已为您下载完毕'
 
-    def download_video_bili_more_one(self, bv, p):
-        url = self.get_download_url_more(bv, p)
-        cid_list_len = self.get_cid_list(bv)
-        filename = self.video_path + \
-            self.get_title(bv) + self.get_part(bv, p) + '.mp4'
+    @classmethod
+    def download_video_bili_more_one(cls, bv, p):
+        url = cls.get_download_url_more(bv, p)
+        cid_list_len = cls.get_cid_list(bv)
+        filename = cls.video_path + \
+            cls.get_title(bv) + cls.get_part(bv, p) + '.mp4'
         if cid_list_len > 0:
-            self.download_video(url, bv, filename)
+            cls.download_video(url, bv, filename)
             return '已为您下载完毕'
         if cid_list_len == 0:
             return '戳啦戳啦'
