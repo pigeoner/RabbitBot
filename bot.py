@@ -59,10 +59,10 @@ class MyClient(botpy.Client):
                                              message.id,
                                              self.api.post_message, room_id))
         elif message.content == '/开始播放':
-            await Movie_MP4.obs_play()
             await self.api.post_message(channel_id=message.channel_id,
                                         msg_id=message.id,
                                         content='电梓播放器启动...')
+            await Movie_MP4.obs_play()
         elif message.content == '/结束播放':
             Movie_MP4.end_play()
             await self.api.post_message(channel_id=message.channel_id,

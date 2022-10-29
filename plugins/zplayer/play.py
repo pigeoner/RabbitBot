@@ -97,6 +97,8 @@ class Video(object):
 
     @classmethod
     async def obs_play(cls):
+        cls.rc.set('azusa_player_end', 0)
+
         async def make_request():
             await cls.ws.connect()  # Make the connection to obs-websocket
             # Wait for the identification handshake to complete
@@ -105,12 +107,12 @@ class Video(object):
                 while True:
                     is_end = cls.rc.get('azusa_player_end')
                     is_end = int(is_end) if is_end else None
-                    if not is_end:
+                    if is_end:
                         print('接收到频道终止消息，结束播放')
                         break
                     song_to_play = cls.get_song_to_play()
                     request = simpleobsws.Request('SetInputSettings', {
-                        'inputName': '电梓播放器',
+                        'inputName': _config['media_name'],
                         'inputSettings': {
                             'local_file': song_to_play
                         }
@@ -118,14 +120,14 @@ class Video(object):
                     ret = await cls.ws.call(request)  # Perform the request
                     if ret.ok():  # Check if the request succeeded
                         req = simpleobsws.Request('GetMediaInputStatus', {
-                            'inputName': '电梓播放器'})
+                            'inputName': _config['media_name']})
                         filename = os.path.basename(song_to_play)
                         print('准备播放视频：{}...'.format(filename))
                         end_info = '播放视频：{} 结束'.format(filename)
                         while True:
                             is_end = cls.rc.get('azusa_player_end')
                             is_end = int(is_end) if is_end else None
-                            if not is_end:
+                            if is_end:
                                 break
                             sleep(1)
                             res = await cls.ws.call(req)
@@ -151,7 +153,7 @@ class Video(object):
 
     @classmethod
     def end_play(self):
-        self.rc.set('azusa_player_end', 0)
+        self.rc.set('azusa_player_end', 1)
 
 
 class Movie_MP4(Video):

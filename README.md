@@ -16,7 +16,12 @@ pip install -r requirements.txt
 
 ### 3.配置
 
-将 `config.bak.yaml` 重命名为 `config.yaml`，然后在 `config.yaml` 中配置你的 bot
+- 将 `config.bak.yaml` 重命名为 `config.yaml`，然后在 `config.yaml` 中配置你的 bot
+- **电梓播放器相关配置**
+  - 下载 [OBS Studio](https://obsproject.com/) 和 [obs-websocket](https://github.com/obsproject/obs-websocket/releases/tag/5.0.1)
+  - 在 `来源` 列表左下角选择 `添加` -> `媒体源`，命名为 `电子播放器`，或者自定义名称，并在 `config.yaml` 文件里将 `input_name` 一项修改为自定义的名称
+  - 在 OBS 的 `设置` 中填入个人 QQ 频道直播的推流地址和推流码
+  - 开始推流
 
 ## 注意
 
