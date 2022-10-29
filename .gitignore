@@ -131,3 +131,4 @@ dmypy.json
 cache/
 config.yaml
 test_obsws.py
+test.http

@@ -37,16 +37,16 @@ class Song:
 
     @classmethod
     def choose_song(cls, choice, auth_id):
-        if choice in range(1, 10):  # 最大支持九个选项
-            choice = int(choice) - 1
+        choice_num = int(choice) if choice.isdigit() else 0
+        if choice_num in range(1, 10):  # 最大支持九个选项
             redis_cache = cls.rc.get('song_choices')
             json_cache = json.loads(
                 redis_cache)  # json字符串解析为字典
             authentication = auth_id  # 发送者的id
             print(json_cache)
             if authentication == json_cache['auth']:  # 鉴权
-                if choice <= len(json_cache['path']):
-                    cls.rc.rpush('song_list', json_cache['path'][choice])
+                if choice_num <= len(json_cache['path']):
+                    cls.rc.rpush('song_list', json_cache['path'][choice_num])
                     return '点歌成功，加入播放队列'
                 else:  # 选择序号不能超过相关歌单列表长度
                     return '序号错误'
