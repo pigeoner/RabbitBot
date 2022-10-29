@@ -10,8 +10,8 @@ redis: # redis数据库相关配置
   port: '6379'
   password: '' # 一般为空
   db: 0
-obs_ws_url: 'ws://localhost:4455' # obs-websocket地址
-obs_ws_password: 'MjrhFA0YIEv9T6bR' # obs-websocket密码
+obs_ws_url: '' # obs-websocket地址
+obs_ws_password: '' # obs-websocket密码
 media_name: ''
 video_path: '' # 所有视频存放的目录
 video_play: # 播放视频相关配置
