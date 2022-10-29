@@ -130,3 +130,4 @@ dmypy.json
 .pyre/
 cache/
 config.yaml
+test_obsws.py

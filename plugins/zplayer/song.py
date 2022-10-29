@@ -22,7 +22,7 @@ class Song:
             logger.info(song_path_lst[0])
             return "点歌成功，加入播放队列"
         elif len(song_path_lst) == 0:
-            return "taxi了，找不到捏"
+            return "未找到相关歌曲"
         elif len(song_path_lst) > 1:
             song_name_lst = [f"{i+1}.{song.rsplit('.', 1)[0]}"
                              for i, song in enumerate(song_name_lst)]
@@ -37,7 +37,7 @@ class Song:
 
     @classmethod
     def choose_song(cls, choice, auth_id):
-        if choice == '1' or '2' or '3' or '4' or '5' or '6' or '7' or '8' or '9':  # 最大支持九个选项
+        if choice in range(1, 10):  # 最大支持九个选项
             choice = int(choice) - 1
             redis_cache = cls.rc.get('song_choices')
             json_cache = json.loads(
@@ -45,9 +45,12 @@ class Song:
             authentication = auth_id  # 发送者的id
             print(json_cache)
             if authentication == json_cache['auth']:  # 鉴权
-                cls.rc.rpush('song_list', json_cache['path'][choice])
-                return '点歌成功，加入播放队列'
+                if choice <= len(json_cache['path']):
+                    cls.rc.rpush('song_list', json_cache['path'][choice])
+                    return '点歌成功，加入播放队列'
+                else:  # 选择序号不能超过相关歌单列表长度
+                    return '序号错误'
             else:
                 return "你不是点歌的那位哦"
         else:
-            return "哥们再输一遍，听不懂"
+            return "点歌失败，请输入正确的选择序号（1~9）"

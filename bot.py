@@ -59,13 +59,15 @@ class MyClient(botpy.Client):
                                              message.id,
                                              self.api.post_message, room_id))
         elif message.content == '/开始播放':
-            while True:
-                song_list_len = self.rc.llen('song_list')  # 已点歌曲列表长度
-                if song_list_len > 0:
-                    song_to_play = self.rc.lpop('song_list')
-                    Movie_MP4.play(song_to_play)
-                else:
-                    Movie_MP4.random_play()
+            await Movie_MP4.obs_play()
+            await self.api.post_message(channel_id=message.channel_id,
+                                        msg_id=message.id,
+                                        content='电梓播放器启动...')
+        elif message.content == '/结束播放':
+            Movie_MP4.end_play()
+            await self.api.post_message(channel_id=message.channel_id,
+                                        msg_id=message.id,
+                                        content='结束播放')
         elif (song_match := re.match('/点歌\s+(.*)', message.content)) is not None:
             song_title = song_match.group(1)
             await self.api.post_message(channel_id=message.channel_id,
