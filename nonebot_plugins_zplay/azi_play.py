@@ -96,7 +96,7 @@ async def get_list():
 
 @scheduler.scheduled_job('interval', seconds=5, id='live_sched', misfire_grace_time=60)
 async def timer_obs():
-    (bot,) = nonebot.get_bots().values()
+    bot = nonebot.get_bots().values()
     event: Event
     result = ow.obs_ws.get_media_input_status(ow.media)
     if result.media_state == 'OBS_MEDIA_STATE_ENDED':
