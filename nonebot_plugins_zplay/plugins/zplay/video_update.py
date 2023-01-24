@@ -4,7 +4,11 @@ import time
 import asyncio
 import nest_asyncio
 import sys
-sys.path.append('..')
+import pathlib
+import os
+current_dir = pathlib.Path(__file__)
+env_dir = current_dir.parent.parent.parent
+sys.path.append(os.path.join(env_dir))
 
 nest_asyncio.apply()
 from config_zplay import obs_config
