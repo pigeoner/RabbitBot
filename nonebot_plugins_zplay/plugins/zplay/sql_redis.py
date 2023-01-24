@@ -1,7 +1,14 @@
 import redis
 import json
 import asyncio
-from ...config_zplay import obs_config
+import sys
+import pathlib
+import os
+current_dir = pathlib.Path(__file__)
+env_dir = current_dir.parent.parent.parent
+sys.path.append(os.path.join(env_dir))
+
+from config_zplay import obs_config
 
 set_expired_time = obs_config['set_expired_time']
 redis_pool = redis.ConnectionPool(host=obs_config['redis']['host'],

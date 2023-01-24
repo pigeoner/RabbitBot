@@ -2,7 +2,14 @@ import obsws_python as obs
 from .search import Search
 from .sql_redis import insert_redis
 from nonebot import require
-from ...config_zplay import obs_config
+import sys
+import pathlib
+import os
+current_dir = pathlib.Path(__file__)
+env_dir = current_dir.parent.parent.parent
+sys.path.append(os.path.join(env_dir))
+
+from config_zplay import obs_config
 
 
 class OBS_PLAY:

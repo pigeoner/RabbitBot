@@ -132,3 +132,6 @@ cache/
 config.yaml
 test_obsws.py
 test.http
+
+nonebot_plugins_zplay/.idea
+.DS_Store
