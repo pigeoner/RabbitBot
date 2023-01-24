@@ -2,6 +2,12 @@
 
 一个超只因有用的 QQ 频道机器人
 
+分为两个部分
+
+一个为channel_bot QQ频道官方bot
+
+一个为nonebot_plugins_zplay 以nonebot插件的形式加载
+
 ## QQ频道官方bot
 ## 使用
 
@@ -59,7 +65,3 @@ pip install -r requirements.txt
 本人测试环境为Python 3.9 及 3.10，建议使用者的使用环境不低于 3.9
 
 该插件目前仅适配电梓播放器
-
-### TODO
-
-新增更新模块
