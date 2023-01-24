@@ -5,7 +5,7 @@ import asyncio
 import nest_asyncio
 
 nest_asyncio.apply()
-from .config_zplay import obs_config
+from ...config_zplay import obs_config
 
 My_path = obs_config['fold_path']
 

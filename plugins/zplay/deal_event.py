@@ -8,7 +8,7 @@ from nonebot_plugin_guild_patch import GuildMessageEvent  # DO NOT DELETE
 from .obs_websocket import OBS_PLAY
 from .search import Search
 from .sql_redis import insert_redis
-from ...video_update import download_bili
+from .video_update import download_bili
 
 
 class zplay:

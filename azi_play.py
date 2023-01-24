@@ -13,7 +13,7 @@ from .plugins.zplay.deal_event import zplay, zplay_tool
 from .plugins.zplay.obs_websocket import OBS_PLAY
 from .plugins.zplay.sql_redis import insert_redis
 from .config_zplay import obs_config
-from .video_update import download_bili
+from .plugins.zplay.video_update import download_bili
 
 try:
     master = get_driver().config.master
