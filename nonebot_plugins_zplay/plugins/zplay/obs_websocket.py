@@ -2,7 +2,10 @@ import obsws_python as obs
 from .search import Search
 from .sql_redis import insert_redis
 from nonebot import require
-from ...config_zplay import obs_config
+import sys
+sys.path.append('..')
+
+from config_zplay import obs_config
 
 
 class OBS_PLAY:

@@ -1,7 +1,10 @@
 import os
 import random
 from typing import TypedDict
-from ...config_zplay import obs_config
+import sys
+sys.path.append('..')
+
+from config_zplay import obs_config
 
 
 class search_result(TypedDict):

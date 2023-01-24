@@ -3,9 +3,11 @@ import json
 import time
 import asyncio
 import nest_asyncio
+import sys
+sys.path.append('..')
 
 nest_asyncio.apply()
-from .config_zplay import obs_config
+from config_zplay import obs_config
 
 My_path = obs_config['fold_path']
 
