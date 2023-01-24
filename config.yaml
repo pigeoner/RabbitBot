@@ -1,0 +1,17 @@
+fold_path: 'D:\Azusa\songs\'
+Cookie: "buvid3=F5D9F2E5-4BE4-4697-BB2D-2AB749AAECF5148806infoc; LIVE_BUVID=AUTO1716273158044200; CURRENT_BLACKGAP=0; blackside_state=0; buvid_fp_plain=undefined; i-wanna-go-back=-1; buvid4=ED6356F1-F2CE-01D9-55DE-6727E491487295737-022012120-Mwf2sY1xkAn4W392lJRxwg%3D%3D; nostalgia_conf=-1; fingerprint3=5b983811dab6e797433c9ed865f971e9; DedeUserID=350411301; DedeUserID__ckMd5=c30a9003f9842ad7; b_ut=5; hit-dyn-v2=1; is-2022-channel=1; _uuid=46103289A-9885-B4A9-85CC-61026DDB97431041742infoc; b_nut=100; CURRENT_QUALITY=120; hit-new-style-dyn=0; CURRENT_FNVAL=4048; rpdid=|(YYl~R~lmu0J'uYY)~RlmkJ; fingerprint=59e219e6a397a418449f5a7b5aafb8f5; buvid_fp=878790ac35c9ec03b0a760aac38042cd; PVID=1; SESSDATA=e7b135ac%2C1689147891%2C33e54%2A11; bili_jct=17c42dbfd40f2303a5dc6521d5d6bec1; sid=7dtvnx36; bp_video_offset_350411301=750572898443329500; b_lsid=A7D1028D7_185ACD52450; innersign=0"
+User-Agent: 'Mozilla/5.0 (Windows NT 6.1; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/55.0.2883.87Safari/537.36'
+referer: 'https://www.bilibili.com/video/'
+live_guild: '36667731636792997'
+live_channel: '1495234'
+call_channel: '11150213'
+notice_channel: '1591085'
+media: 'zplay'
+set_expired_time: 60
+obs_ws:
+  host: 'localhost'
+  port: 4455
+redis:
+  host: 'localhost'
+  password: 'YcArpJm3eom'
+  port: 6379
